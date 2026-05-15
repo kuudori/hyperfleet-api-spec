@@ -1753,6 +1753,8 @@ components:
           type: string
         version:
           type: string
+        channelGroup:
+          type: string
     ResourceCondition:
       type: object
       required:

@@ -1917,6 +1917,8 @@ definitions:
     type: string
   ReleaseSpec:
     properties:
+      channelGroup:
+        type: string
       image:
         type: string
       version:
