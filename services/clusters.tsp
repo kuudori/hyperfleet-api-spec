@@ -91,8 +91,8 @@ interface Clusters {
     | BadRequestResponse;
 
   /**
-   * Permanently removes a cluster that is stuck in Finalizing state.
-   * Requires a reason for audit purposes.
+   * Permanently removes the cluster record from the database for a cluster stuck in Finalizing state.
+   * This is a database-only operation. Requires a reason for audit purposes.
    */
   @route("/{cluster_id}/force-delete")
   @post

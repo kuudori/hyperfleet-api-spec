@@ -264,8 +264,8 @@ paths:
       operationId: forceDeleteCluster
       summary: Force-delete a cluster
       description: |-
-        Permanently removes a cluster that is stuck in Finalizing state.
-        Requires a reason for audit purposes.
+        Permanently removes the cluster record from the database for a cluster stuck in Finalizing state.
+        This is a database-only operation. Requires a reason for audit purposes.
       parameters:
         - name: cluster_id
           in: path
@@ -573,8 +573,8 @@ paths:
       operationId: forceDeleteNodePool
       summary: Force-delete a nodepool
       description: |-
-        Permanently removes a nodepool that is stuck in Finalizing state.
-        Requires a reason for audit purposes.
+        Permanently removes the nodepool record from the database for a nodepool stuck in Finalizing state.
+        This is a database-only operation. Requires a reason for audit purposes.
       parameters:
         - name: cluster_id
           in: path
