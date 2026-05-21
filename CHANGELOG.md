@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.16] - 2026-05-20
+
+### Added
+
+- `channelGroup` optional field to `ReleaseSpec` in GCP cluster model (GCP-696)
+
 ## [1.0.15] - 2026-05-18
 
 ### Added
@@ -146,7 +152,8 @@ First official stable release of the HyperFleet API specification.
 - Interactive API documentation
 
 <!-- Links -->
-[Unreleased]: https://github.com/openshift-hyperfleet/hyperfleet-api-spec/compare/v1.0.15...HEAD
+[Unreleased]: https://github.com/openshift-hyperfleet/hyperfleet-api-spec/compare/v1.0.16...HEAD
+[1.0.16]: https://github.com/openshift-hyperfleet/hyperfleet-api-spec/compare/v1.0.15...v1.0.16
 [1.0.15]: https://github.com/openshift-hyperfleet/hyperfleet-api-spec/compare/v1.0.14...v1.0.15
 [1.0.14]: https://github.com/openshift-hyperfleet/hyperfleet-api-spec/compare/v1.0.13...v1.0.14
 [1.0.13]: https://github.com/openshift-hyperfleet/hyperfleet-api-spec/compare/v1.0.12...v1.0.13
