@@ -656,6 +656,8 @@ paths:
                 $ref: '#/components/schemas/Error'
       tags:
         - NodePool statuses
+      security:
+        - BearerAuth: []
   /api/hyperfleet/v1/clusters/{cluster_id}/statuses:
     put:
       operationId: putClusterStatuses
