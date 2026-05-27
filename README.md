@@ -2,7 +2,7 @@
 
 This repository supports the development of the Hyperfleet OpenAPI contract, but is not the source-of-truth for the OpenAPI contract.
 
-This project hosts the TypeSpec files to generate the HyperFleet core OpenAPI specification. TypeSpec is an implementation detail providing better ergonomics than writing contracts in plain YAML. The repository generates the core provider contract; the GCP-specific contract lives in [hyperfleet-api-spec-gcp](https://github.com/openshift-hyperfleet/hyperfleet-api-spec-gcp).
+This project hosts the TypeSpec files to generate the HyperFleet core OpenAPI specification. TypeSpec is an implementation detail providing better ergonomics than writing contracts in plain YAML. The repository generates the core provider contract; the provider-specific contract lives in [hyperfleet-api-spec-template](https://github.com/openshift-hyperfleet/hyperfleet-api-spec-template).
 
 Access to the OpenAPI contract source of truth in hyperfleet-api repository:
 
@@ -68,7 +68,7 @@ The repository is organized with root-level configuration files and two main dir
 
 ### `/shared`
 
-Contains models and services shared across providers (also published as an npm package for consumption by provider-specific repos like `hyperfleet-api-spec-gcp`):
+Contains models and services shared across providers (also published as an npm package for consumption by provider-specific repos like `hyperfleet-api-spec-template`):
 
 - **`shared/models/clusters/`** - Cluster resource definitions (interfaces and base models)
 - **`shared/models/statuses/`** - Status resource definitions for clusters and nodepools
@@ -89,10 +89,10 @@ Contains core-specific models and internal services:
 
 The status endpoints are split into two files to support different API consumers:
 
-| File | Operations | Audience | Included in Build |
-|------|------------|----------|-------------------|
-| `shared/services/statuses.tsp` | GET (read) | External clients | ✅ Yes (default) |
-| `core/services/statuses-internal.tsp` | PUT (write) | Internal adapters | ❌ No (opt-in) |
+| File                                  | Operations  | Audience          | Included in Build |
+| ------------------------------------- | ----------- | ----------------- | ----------------- |
+| `shared/services/statuses.tsp`        | GET (read)  | External clients  | ✅ Yes (default)  |
+| `core/services/statuses-internal.tsp` | PUT (write) | Internal adapters | ❌ No (opt-in)    |
 
 **Why the split?**
 
@@ -149,7 +149,7 @@ The HyperFleet API provides simple CRUD operations for managing cluster resource
 
 ## Adding a New Provider
 
-Provider-specific contracts live in their own repository and consume this repo as an npm package (the `hyperfleet` package). See [hyperfleet-api-spec-gcp](https://github.com/openshift-hyperfleet/hyperfleet-api-spec-gcp) for a reference implementation.
+Provider-specific contracts live in their own repository and consume this repo as an npm package (the `hyperfleet` package). See [hyperfleet-api-spec-template](https://github.com/openshift-hyperfleet/hyperfleet-api-spec-template) for a reference implementation.
 
 ## Adding a New Service
 
@@ -162,7 +162,7 @@ To add a new service (e.g., with additional endpoints):
    import "@typespec/openapi";
    import "../models/common/model.tsp";
    // ... other imports as needed
-   
+
    namespace HyperFleet;
    @route("/new-resource")
    interface NewService {
