@@ -139,12 +139,13 @@ interface ResourceStatuses {
   @put
   @summary("Adapter creates or updates resource status")
   @operationId("putResourceStatuses")
-  @doc("Adapters call this endpoint to report status for a resource after each evaluation. The adapter's status entry is created if it doesn't exist, or updated if it does (upserted by adapter name).")
+  @doc("Adapters call this endpoint to report status for a resource after each evaluation. The adapter's status entry is created if it doesn't exist, or updated if it does (upserted by adapter name). Returns 400 Bad Request when mandatory conditions (Available, Applied, Health) are missing or Available has an invalid status value. Returns 204 No Content when the report is silently discarded (e.g., stale generation, duplicate observed time, or subsequent Unknown Available status).")
   putResourceStatuses(
     @path resource_id: string,
     @body body: AdapterStatusCreateRequest,
   ):
     | (CreatedResponse & AdapterStatus)
+    | { @statusCode statusCode: 204; }
     | Error
     | BadRequestResponse
     | UnauthorizedResponse

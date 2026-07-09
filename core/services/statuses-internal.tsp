@@ -38,7 +38,7 @@ interface ClusterStatuses {
   @put
   @summary("Adapter creates or updates cluster status")
   @operationId("putClusterStatuses")
-  @doc("Adapters call this endpoint to report the status for a cluster after each evaluation. The adapter's status entry is created if it doesn't exist, or updated if it does (upserted by adapter name). This allows HyperFleet to aggregate multiple adapter perspectives into a unified cluster status.")
+  @doc("Adapters call this endpoint to report the status for a cluster after each evaluation. The adapter's status entry is created if it doesn't exist, or updated if it does (upserted by adapter name). This allows HyperFleet to aggregate multiple adapter perspectives into a unified cluster status. Returns 400 Bad Request when mandatory conditions (Available, Applied, Health) are missing or Available has an invalid status value. Returns 204 No Content when the report is silently discarded (e.g., stale generation, duplicate observed time, or subsequent Unknown Available status).")
   putClusterStatuses(
     /**
      * Cluster ID
@@ -48,6 +48,7 @@ interface ClusterStatuses {
     @body body: AdapterStatusCreateRequest,
   ):
     | (CreatedResponse & AdapterStatus)
+    | { @statusCode statusCode: 204; }
     | Error
     | BadRequestResponse
     | UnauthorizedResponse
@@ -82,7 +83,7 @@ interface NodePoolStatuses {
   @put
   @summary("Adapter creates or updates nodepool status")
   @operationId("putNodePoolStatuses")
-  @doc("Adapters call this endpoint to report the status for a nodepool after each evaluation. The adapter's status entry is created if it doesn't exist, or updated if it does (upserted by adapter name). This allows HyperFleet to aggregate multiple adapter perspectives into a unified nodepool status.")
+  @doc("Adapters call this endpoint to report the status for a nodepool after each evaluation. The adapter's status entry is created if it doesn't exist, or updated if it does (upserted by adapter name). This allows HyperFleet to aggregate multiple adapter perspectives into a unified nodepool status. Returns 400 Bad Request when mandatory conditions (Available, Applied, Health) are missing or Available has an invalid status value. Returns 204 No Content when the report is silently discarded (e.g., stale generation, duplicate observed time, or subsequent Unknown Available status).")
   putNodePoolStatuses(
     /**
      * Cluster ID
@@ -97,6 +98,7 @@ interface NodePoolStatuses {
     @body body: AdapterStatusCreateRequest,
   ):
     | (CreatedResponse & AdapterStatus)
+    | { @statusCode statusCode: 204; }
     | Error
     | BadRequestResponse
     | UnauthorizedResponse
