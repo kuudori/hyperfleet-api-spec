@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.26] - 2026-07-09
+
+### Added
+
+- 204 No Content response to PUT cluster, nodepool, and resource statuses endpoints (HYPERFLEET-1154)
+
+## [1.0.25] - 2026-06-23
+
+### Changed
+
+- Remove `@format("email")` constraint from `created_by`, `updated_by`, and `deleted_by` audit fields (HYPERFLEET-1278)
+
 ## [1.0.24] - 2026-06-24
 
 ### Changed
@@ -228,7 +240,9 @@ First official stable release of the HyperFleet API specification.
 - Interactive API documentation
 
 <!-- Links -->
-[Unreleased]: https://github.com/openshift-hyperfleet/hyperfleet-api-spec/compare/v1.0.23...HEAD
+[Unreleased]: https://github.com/openshift-hyperfleet/hyperfleet-api-spec/compare/v1.0.26...HEAD
+[1.0.26]: https://github.com/openshift-hyperfleet/hyperfleet-api-spec/compare/v1.0.25...v1.0.26
+[1.0.25]: https://github.com/openshift-hyperfleet/hyperfleet-api-spec/compare/v1.0.24...v1.0.25
 [1.0.23]: https://github.com/openshift-hyperfleet/hyperfleet-api-spec/compare/v1.0.22...v1.0.23
 [1.0.22]: https://github.com/openshift-hyperfleet/hyperfleet-api-spec/compare/v1.0.21...v1.0.22
 [1.0.21]: https://github.com/openshift-hyperfleet/hyperfleet-api-spec/compare/v1.0.20...v1.0.21

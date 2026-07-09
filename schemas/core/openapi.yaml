@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: HyperFleet API
-  version: 1.0.25
+  version: 1.0.26
   contact:
     name: HyperFleet Team
     url: https://github.com/openshift-hyperfleet
@@ -822,7 +822,7 @@ paths:
     put:
       operationId: putNodePoolStatuses
       summary: Adapter creates or updates nodepool status
-      description: Adapters call this endpoint to report the status for a nodepool after each evaluation. The adapter's status entry is created if it doesn't exist, or updated if it does (upserted by adapter name). This allows HyperFleet to aggregate multiple adapter perspectives into a unified nodepool status.
+      description: Adapters call this endpoint to report the status for a nodepool after each evaluation. The adapter's status entry is created if it doesn't exist, or updated if it does (upserted by adapter name). This allows HyperFleet to aggregate multiple adapter perspectives into a unified nodepool status. Returns 204 No Content when the report is silently discarded (e.g., stale generation, duplicate observed time, or subsequent Unknown Available status).
       parameters:
         - name: cluster_id
           in: path
@@ -843,6 +843,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdapterStatus'
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
         '400':
           description: The server could not understand the request due to invalid syntax.
           content:
@@ -931,7 +933,7 @@ paths:
     put:
       operationId: putClusterStatuses
       summary: Adapter creates or updates cluster status
-      description: Adapters call this endpoint to report the status for a cluster after each evaluation. The adapter's status entry is created if it doesn't exist, or updated if it does (upserted by adapter name). This allows HyperFleet to aggregate multiple adapter perspectives into a unified cluster status.
+      description: Adapters call this endpoint to report the status for a cluster after each evaluation. The adapter's status entry is created if it doesn't exist, or updated if it does (upserted by adapter name). This allows HyperFleet to aggregate multiple adapter perspectives into a unified cluster status. Returns 204 No Content when the report is silently discarded (e.g., stale generation, duplicate observed time, or subsequent Unknown Available status).
       parameters:
         - name: cluster_id
           in: path
@@ -946,6 +948,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdapterStatus'
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
         '400':
           description: The server could not understand the request due to invalid syntax.
           content:
@@ -1367,7 +1371,7 @@ paths:
     put:
       operationId: putResourceStatuses
       summary: Adapter creates or updates resource status
-      description: Adapters call this endpoint to report status for a resource after each evaluation. The adapter's status entry is created if it doesn't exist, or updated if it does (upserted by adapter name).
+      description: Adapters call this endpoint to report status for a resource after each evaluation. The adapter's status entry is created if it doesn't exist, or updated if it does (upserted by adapter name). Returns 204 No Content when the report is silently discarded (e.g., stale generation, duplicate observed time, or subsequent Unknown Available status).
       parameters:
         - name: resource_id
           in: path
@@ -1381,6 +1385,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AdapterStatus'
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
         '400':
           description: The server could not understand the request due to invalid syntax.
           content:
